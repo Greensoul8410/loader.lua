@@ -4,7 +4,7 @@ local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 
 -- config
-local SERVICE = "Redsoul Hub" -- your service name for verification
+local SERVICE = "RedsoulHub" -- your service name for verification
 local MAIN_SCRIPT_URL = "https://raw.githubusercontent.com/Greensoul8410/redsoulmain/main/main.lua"
 local GET_KEY_URL = "https://api.pandadevelopment.net/getkey?service=redsoulhub" -- your key link
 
