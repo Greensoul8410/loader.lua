@@ -4,9 +4,9 @@ local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 
 -- config
-local SERVICE = "redsoulhub" -- your service name for verification
+local SERVICE_IDENTIFIER = "redsoulhub" -- use identifier, not display name
 local MAIN_SCRIPT_URL = "https://raw.githubusercontent.com/Greensoul8410/redsoulmain/main/main.lua"
-local GET_KEY_URL = "https://api.pandadevelopment.net/getkey?service=redsoulhub" -- your key link
+local GET_KEY_URL = "https://api.pandadevelopment.net/getkey?service=redsoulhub"
 
 -- gui
 local gui = Instance.new("ScreenGui")
@@ -17,10 +17,10 @@ gui.Parent = player:WaitForChild("PlayerGui")
 -- main frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.fromScale(0.38, 0.32)
-frame.Position = UDim2.fromScale(0.31, 0.34)
-frame.BackgroundColor3 = Color3.fromRGB(15, 15, 18)
-frame.BorderSizePixel = 0
+frame.Position = UDim2.fromScale(0.5, 0.5)
 frame.AnchorPoint = Vector2.new(0.5,0.5)
+frame.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+frame.BorderSizePixel = 0
 frame.Active = true
 frame.Draggable = true
 frame.BackgroundTransparency = 1
@@ -57,8 +57,8 @@ box.PlaceholderText = "Red-XXXXXXXX"
 box.Text = ""
 box.Size = UDim2.fromScale(0.9,0.18)
 box.Position = UDim2.fromScale(0.05,0.38)
-box.BackgroundColor3 = Color3.fromRGB(28,28,32)
-box.TextColor3 = Color3.new(1,1,1)
+box.BackgroundColor3 = Color3.fromRGB(35,35,45)
+box.TextColor3 = Color3.fromRGB(255,255,255)
 box.Font = Enum.Font.Gotham
 box.TextScaled = true
 box.ClearTextOnFocus = false
@@ -83,14 +83,14 @@ local function makeBtn(text, pos, color)
     b.Size = UDim2.fromScale(0.42,0.18)
     b.Position = pos
     b.BackgroundColor3 = color
-    b.TextColor3 = Color3.new(1,1,1)
+    b.TextColor3 = Color3.fromRGB(255,255,255)
     b.Font = Enum.Font.GothamBold
     b.TextScaled = true
     Instance.new("UICorner",b).CornerRadius = UDim.new(0,14)
     b.Parent = frame
-    -- hover
+    -- hover glow effect
     b.MouseEnter:Connect(function()
-        TweenService:Create(b, TweenInfo.new(0.2), {BackgroundColor3 = color:Lerp(Color3.fromRGB(255,255,255),0.2)}):Play()
+        TweenService:Create(b, TweenInfo.new(0.2), {BackgroundColor3 = color:Lerp(Color3.fromRGB(0,255,255),0.3)}):Play()
     end)
     b.MouseLeave:Connect(function()
         TweenService:Create(b, TweenInfo.new(0.2), {BackgroundColor3 = color}):Play()
@@ -124,10 +124,10 @@ checkKey.MouseButton1Click:Connect(function()
     status.TextColor3 = Color3.fromRGB(200,200,200)
 
     local ok, res = pcall(function()
-        return game:HttpGet("https://api.pandadevelopment.net/verify?service="..SERVICE.."&key="..key)
+        return game:HttpGet("https://api.pandadevelopment.net/verify?service="..SERVICE_IDENTIFIER.."&key="..key)
     end)
 
-    print("DEBUG: Server returned ->", res) -- debug
+    print("DEBUG: Server returned ->", res) -- debug output
 
     if ok and res:lower():find("true") then
         status.Text = "✅ Key verified! Loading..."
