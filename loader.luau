@@ -112,8 +112,15 @@ getKey.MouseButton1Click:Connect(function()
 end)
 
 -- verify key click
+-- list of keys you want to allow locally
+local validKeys = {
+    "RED123",
+    "TESTKEY",
+    "MYSECRET"
+}
+
 checkKey.MouseButton1Click:Connect(function()
-    local key = box.Text:gsub("%s","") -- remove spaces
+    local key = box.Text:gsub("%s",""):upper() -- remove spaces & make uppercase
     if key == "" then
         status.Text = "⚠️ Enter a key first"
         status.TextColor3 = Color3.fromRGB(255,120,120)
@@ -123,13 +130,15 @@ checkKey.MouseButton1Click:Connect(function()
     status.Text = "⏳ Verifying key..."
     status.TextColor3 = Color3.fromRGB(200,200,200)
 
-    local ok, res = pcall(function()
-        return game:HttpGet("https://api.pandadevelopment.net/verify?service="..SERVICE_IDENTIFIER.."&key="..key)
-    end)
+    local success = false
+    for _, k in pairs(validKeys) do
+        if key == k then
+            success = true
+            break
+        end
+    end
 
-    print("DEBUG: Server returned ->", res) -- debug output
-
-    if ok and res:lower():find("true") then
+    if success then
         status.Text = "✅ Key verified! Loading..."
         status.TextColor3 = Color3.fromRGB(120,255,160)
         wait(0.5)
@@ -140,3 +149,4 @@ checkKey.MouseButton1Click:Connect(function()
         status.TextColor3 = Color3.fromRGB(255,120,120)
     end
 end)
+
