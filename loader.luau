@@ -1,7 +1,7 @@
 -- 🔑 CONFIG
 local SERVICE = "redsoulhub"
 local GET_KEY_URL = "https://api.pandadevelopment.net/getkey?service=redsoulhub"
-local MAIN_SCRIPT_URL = "PASTE_YOUR_MAIN_SCRIPT_RAW_LINK_HERE"
+local MAIN_SCRIPT_URL = "https://raw.githubusercontent.com/Greensoul8410/redsoulmain/main/main.lua"
 
 -- 🔧 Services
 local Players = game:GetService("Players")
