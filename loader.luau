@@ -4,7 +4,7 @@ print("🔥 Key system script started")
 local Config = {
     api = "e272e094-2f1e-45ff-a636-55b95ee83ffa",
     service = "RedsoulHub",
-    provider = "Checkpoint1"
+    provider = "Checkpoint 1"
 }
 
 -- ================= MAIN SCRIPT =================
