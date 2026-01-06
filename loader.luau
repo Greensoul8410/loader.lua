@@ -1,3 +1,5 @@
+print("🔥 Key system script started")
+
 -- ================= CONFIG =================
 Config = {
     api = "e272e094-2f1e-45ff-a636-55b95ee83ffa",
@@ -16,8 +18,7 @@ local function main()
         warn("Failed to load main script:", err)
     end
 end
-if getgenv().RedExecutorKeySys then return end
-getgenv().RedExecutorKeySys = true
+
 
 -- ================= SERVICES =================
 local TweenService = game:GetService("TweenService")
