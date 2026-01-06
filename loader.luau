@@ -8,7 +8,7 @@ Config = {
 local function main()
     local success, err = pcall(function()
         loadstring(game:HttpGet(
-            "https://raw.githubusercontent.com/gamer8410/choco/main/whattt"
+            "https://raw.githubusercontent.com/Greensoul8410/mainone/main/main.lua"
         ))()
     end)
 
