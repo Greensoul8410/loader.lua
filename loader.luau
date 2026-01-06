@@ -16,8 +16,6 @@ local function main()
         warn("Failed to load main script:", err)
     end
 end
-d
-
 if getgenv().RedExecutorKeySys then return end
 getgenv().RedExecutorKeySys = true
 
