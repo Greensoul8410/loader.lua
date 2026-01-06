@@ -189,12 +189,40 @@ if saved then KeyInput.Text = saved end
 
 -- ================= JUNKIE =================
 local function openGetKey()
-    local sdk = loadstring(game:HttpGet("https://junkie-development.de/sdk/JunkieKeySystem.lua"))()
-    local link = sdk.getLink(Config.api, Config.provider, Config.service)
-    if link and setclipboard then
+    print("🟡 Get Key clicked")
+
+    local success, sdk = pcall(function()
+        return loadstring(game:HttpGet(
+            "https://junkie-development.de/sdk/JunkieKeySystem.lua"
+        ))()
+    end)
+
+    if not success or not sdk then
+        warn("❌ Failed to load Junkie SDK")
+        return
+    end
+
+    local link
+    local ok, err = pcall(function()
+        link = sdk.getLink(Config.api, Config.provider, Config.service)
+    end)
+
+    if not ok or not link then
+        warn("❌ Junkie did not return a link")
+        return
+    end
+
+    print("✅ Junkie link:", link)
+
+    if setclipboard then
         setclipboard(link)
+        print("📋 Link copied to clipboard")
+    else
+        warn("⚠️ setclipboard not supported, printing link instead")
+        print(link)
     end
 end
+
 
 local function validateKey()
     local key = KeyInput.Text:gsub("%s+","")
