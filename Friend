@@ -1,1 +1,5 @@
+local a = false
 
+if a then
+    game:GetService("Players").LocalPlayer:Kick("This is a stolen script, the original source belongs to Darksol hub, join the discord https://discord.gg/HBxR33RVgf")
+end
